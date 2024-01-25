@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "274382156691",
+    "project_id": "bakecakeadmin",
+    "storage_bucket": "bakecakeadmin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274382156691:android:44c061548eaef8a6096e66",
+        "android_client_info": {
+          "package_name": "com.example.bake_n_cake_admin_side"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgCMXxtA6-uezDZ_9u0074J1vkFK88U1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

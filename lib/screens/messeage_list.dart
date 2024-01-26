@@ -1,5 +1,6 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
 import 'package:bake_n_cake_admin_side/screens/chat_section.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,7 @@ class Messeage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: maincolor,
       appBar: AppBar(
@@ -17,7 +19,7 @@ class Messeage extends StatelessWidget {
           onTap: () {
             Get.back();
           },
-          child:  Icon(
+          child: Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
           ),
@@ -25,7 +27,7 @@ class Messeage extends StatelessWidget {
         elevation: 0,
         title: Text(
           "        Messages",
-          style: GoogleFonts.aBeeZee(color: Colors.black),
+          style: normalstyling(15),
         ),
       ),
       body: ListView.builder(
@@ -38,14 +40,14 @@ class Messeage extends StatelessWidget {
                   Get.to(const MesseageIndex());
                 },
                 child: ListTile(
-                  leading: const CircleAvatar(),
+                  leading:  const CircleAvatar(backgroundImage: AssetImage('Assets/person.jpg'),),
                   title: const Text("Sinan"),
                   subtitle: const Text("Message"),
                   trailing: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Container(
-                        height: 30,
-                        width: 30,
+                        height: sizeof.size.height*0.03,
+                        width: sizeof.size.width*0.06,
                         color: Colors.green,
                         child: const Center(child: Text("2")),
                       )),

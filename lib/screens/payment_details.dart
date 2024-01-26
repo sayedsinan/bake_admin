@@ -1,3 +1,5 @@
+import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +9,7 @@ class PaymentDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFFB5DBCE),
       appBar: AppBar(
@@ -23,29 +26,30 @@ class PaymentDetails extends StatelessWidget {
         backgroundColor: const Color(0xFFB5DBCE),
         title: Text(
           "         Payment Details",
-          style: GoogleFonts.aBeeZee(
-            color: Colors.black,
-          ),
+          style:heading(20)
         ),
       ),
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(25),
             child: Card(
-              color: Colors.white,
+              shadowColor: style,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              color: secondColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 40, top: 40, right: 40),
-                    child: Container(
-                      height: 250,
-                      color: Colors.amber,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: SizedBox(
+                      height: sizeof.size.height * 0.3,
+                      width: sizeof.size.width * 1,
+                      child: Image.asset(
+                        'Assets/cake1.jpg',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                   Column(
@@ -61,66 +65,27 @@ class PaymentDetails extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Order Item :"),
+                            Text(
+                              "Order Item :",
+                              style: normalstyling(15),
+                            ),
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Padding(
+                        padding:const  EdgeInsets.all(8.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Payment method :"),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Order ID :"),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Amount :"),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Weight :"),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Date :"),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Time :"),
+                            Text(
+                              "Payment method :",
+                              style: normalstyling(15),
+                            ),
                           ],
                         ),
                       ),
@@ -129,21 +94,83 @@ class PaymentDetails extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Status :"),
+                            Text(
+                              "Order ID :",
+                              style: normalstyling(15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Amount :",
+                              style: normalstyling(15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Weight :",
+                              style: normalstyling(15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Date :",
+                              style: normalstyling(15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Time :",
+                              style: normalstyling(15),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Status :",
+                              style: normalstyling(15),
+                            ),
                             const SizedBox(
                               width: 20,
                             ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(5),
                               child: Container(
-                                width: 70,
+                                width: sizeof.size.width*0.2,
                                 height: 30,
-                                color: Colors.green,
+                                color: buttonColor,
                                 child: Center(
                                   child: Text(
                                     "Done",
-                                    style: GoogleFonts.aBeeZee(
-                                        color: Colors.white),
+                                    style:normalstyling(15),
                                   ),
                                 ),
                               ),

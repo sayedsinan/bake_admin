@@ -1,4 +1,5 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/controller/password_visbility.dart';
 import 'package:bake_n_cake_admin_side/screens/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -14,16 +15,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // final LoginController controller = Get.put(LoginController());
+  // ignore: non_constant_identifier_names
   SignIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text, password: passwordController.text);
+    if (FirebaseAuth.instance.currentUser != null) {
+      Get.offAll(() => HomePage());
+    }
   }
 
   final _formfield = GlobalKey<FormState>();
-
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final Password password = Get.put(Password());
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.only(left: 30, right: 30),
                       child: TextFormField(
                         keyboardType: TextInputType.visiblePassword,
+                        obscureText: password.passsordis.value,
                         controller: passwordController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -80,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         decoration: const InputDecoration(
                           labelText: 'Password',
-                          border: OutlineInputBorder(
+                          border:  OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
                           ),
@@ -93,19 +98,15 @@ class _LoginPageState extends State<LoginPage> {
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color(
-                                0xFF26C1B5)), // Set your desired color here
+                            buttonColor),
                       ),
-                    onPressed: () async {
-  await SignIn();
-  
-  if (FirebaseAuth.instance.currentUser != null) {
-  
-    Get.to(() => HomePage());
-  } else {
+                      onPressed: () async {
+                        await SignIn();
 
-  }
-},
+                        if (FirebaseAuth.instance.currentUser != null) {
+                          Get.to(() => HomePage());
+                        } else {}
+                      },
                       child: const Text("Log In"),
                     ),
                   ],

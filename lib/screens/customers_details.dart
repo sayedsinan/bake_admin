@@ -1,3 +1,5 @@
+import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +9,7 @@ class CustomersDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFFB5DBCE),
@@ -15,7 +18,7 @@ class CustomersDetails extends StatelessWidget {
             onTap: () {
               Get.back();
             },
-            child:const  Icon(
+            child: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             ),
@@ -31,21 +34,20 @@ class CustomersDetails extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 color: Colors.white,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 200,
-                      width: 200,
-                      color: Colors.amber,
+                   
+                    SizedBox(
+                      height: sizeof.size.height*0.3,
+                      width: sizeof.size.width*1,
+                    child: Image.asset("Assets/person.jpg",fit: BoxFit.fill,),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                 const    Column(
+                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -54,8 +56,8 @@ class CustomersDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:  EdgeInsets.all(8.0),
-                              child: Text("Customer name : "),
+                              padding:const  EdgeInsets.all(8.0),
+                              child: Text("Customer name : ",style :normalstyling(15)),
                             ),
                           ],
                         ),
@@ -64,8 +66,8 @@ class CustomersDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:  EdgeInsets.all(8.0),
-                              child: Text("Phone number : "),
+                              padding:const  EdgeInsets.all(8.0),
+                              child: Text("Phone number : ",style: normalstyling(15),),
                             ),
                           ],
                         ),
@@ -74,8 +76,8 @@ class CustomersDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:  EdgeInsets.all(8.0),
-                              child: Text("E- mail : "),
+                              padding:const  EdgeInsets.all(8.0),
+                              child: Text("E- mail : ",style: normalstyling(15),),
                             ),
                           ],
                         ),
@@ -84,8 +86,8 @@ class CustomersDetails extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:  EdgeInsets.all(8.0),
-                              child: Text("Payment: "),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Payment: ",style: normalstyling(15),),
                             ),
                           ],
                         ),
@@ -94,9 +96,9 @@ class CustomersDetails extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: delete,
                       ),
-                      child: const Text("Block"),
+                      child: const Text("Block",),
                     ),
                     const SizedBox(
                       height: 20,

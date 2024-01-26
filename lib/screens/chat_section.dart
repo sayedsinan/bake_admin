@@ -27,10 +27,10 @@ class MesseageIndex extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            SizedBox(
+          const  SizedBox(
               height: 10,
             ),
-            CircleAvatar()
+           const  CircleAvatar(backgroundImage: AssetImage('Assets/person.jpg'),)
           ],
         ),
         actions: <Widget>[
@@ -38,7 +38,7 @@ class MesseageIndex extends StatelessWidget {
             padding: const EdgeInsets.only(right: 50),
             child: Icon(
               Icons.call,
-              color: Colors.green,
+              color: buttonColor,
             ),
           )
         ],

@@ -1,3 +1,7 @@
+import 'dart:ffi';
+
+import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,10 +12,11 @@ class ProductsAdding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof=MediaQuery.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFFB5DBCE),
+      backgroundColor: maincolor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFB5DBCE),
+        backgroundColor: maincolor,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
@@ -24,11 +29,11 @@ class ProductsAdding extends StatelessWidget {
         ),
         title: Text(
           "                 Products",
-          style: GoogleFonts.aBeeZee(color: Colors.black),
+          style: heading(20),
         ),
       ),
       body: ListView(children: [
-        SizedBox(
+      const   SizedBox(
           height: 30,
         ),
         Column(
@@ -41,8 +46,7 @@ class ProductsAdding extends StatelessWidget {
                 children: [
                   Text(
                     "General Information",
-                    style: GoogleFonts.aBeeZee(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                    style: heading(15)
                   ),
                 ],
               ),
@@ -56,8 +60,8 @@ class ProductsAdding extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Container(
                     color: Colors.white,
-                    height: 700,
-                    width: 400,
+                    height: sizeof.size.height*0.9,
+                    width: sizeof.size.width*0.9,
                     child: const AdddingSection()),
               ),
             ),
@@ -67,8 +71,7 @@ class ProductsAdding extends StatelessWidget {
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          Color.fromARGB(
-                              0, 255, 255, 255)), // Set your desired color here
+                         buttonColor), // Set your desired color here
                     ),
                     onPressed: () {},
                     child: Row(
@@ -77,7 +80,7 @@ class ProductsAdding extends StatelessWidget {
                         const SizedBox(width: 20),
                         Text(
                           "Cancel",
-                          style: GoogleFonts.aBeeZee(color: Colors.black),
+                          style: normalstyling(15),
                         ),
                       ],
                     )),
@@ -86,13 +89,12 @@ class ProductsAdding extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color(
-                              0xFF26C1B5)), // Set your desired color here
+                          buttonColor), // Set your desired color here
                     ),
                     onPressed: () {},
                     child: Text(
                       "Add Product",
-                      style: GoogleFonts.aBeeZee(color: Colors.black),
+                      style: normalstyling(15),
                     ),
                   ),
                 ),

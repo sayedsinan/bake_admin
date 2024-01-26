@@ -1,4 +1,7 @@
+import 'package:bake_n_cake_admin_side/color/colors.dart';
 import 'package:bake_n_cake_admin_side/screens/adding_product.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
+import 'package:bake_n_cake_admin_side/screens/product%20deails.dart';
 import 'package:bake_n_cake_admin_side/screens/product_editing.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +13,12 @@ class Products extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
       drawer: NavDrawer(),
-      backgroundColor: const Color(0xFFB5DBCE),
+      backgroundColor: maincolor,
       appBar: AppBar(
-       leading: Builder(
+        leading: Builder(
           builder: (context) => // Ensure Scaffold is in context
               IconButton(
                   icon: Icon(
@@ -23,10 +27,10 @@ class Products extends StatelessWidget {
                   ),
                   onPressed: () => Scaffold.of(context).openDrawer()),
         ),
-        backgroundColor: const Color(0xFFB5DBCE),
-        title: const Text(
+        backgroundColor: maincolor,
+        title:  Text(
           "               Products",
-          style: TextStyle(color: Colors.black),
+          style: heading(20),
         ),
         elevation: 0,
       ),
@@ -56,21 +60,19 @@ class Products extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
-                      color: Colors.white,
-                      height: 40,
-                      width: 150,
+                      color: secondColor,
+                      height: sizeof.size.height*0.05,
+                      width: sizeof.size.width*0.4,
                       child: Row(
                         children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
                           const Icon(Icons.calendar_today_outlined),
                           const SizedBox(
                             width: 10,
                           ),
-                          Text(
-                            "Selected Dates",
-                            style: GoogleFonts.aBeeZee(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          )
+                          Text("Selected Dates", style: heading(14))
                         ],
                       ),
                     ),
@@ -82,9 +84,9 @@ class Products extends StatelessWidget {
                         Get.to(ProductsAdding());
                       },
                       child: Container(
-                        color: Colors.white,
-                        height: 40,
-                        width: 150,
+                        color: secondColor,
+                      height: sizeof.size.height*0.05,
+                      width: sizeof.size.width*0.4,
                         child: Row(
                           children: [
                             const Icon(
@@ -95,9 +97,7 @@ class Products extends StatelessWidget {
                             const SizedBox(width: 10),
                             Text(
                               "Add products",
-                              style: GoogleFonts.aBeeZee(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                              style: heading(14)
                             )
                           ],
                         ),
@@ -111,38 +111,43 @@ class Products extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  leading: CircleAvatar(),
-                  tileColor: Colors.white,
-                  title: Row(
-                    children: [
-                      Text(
-                        "Red Velvet Cake",
-                        style: GoogleFonts.aBeeZee(color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text("₹1,200"),
-             SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                            Get.to(ProductEdititng());
-                          },
-                          child: Icon(Icons.edit)),
-                      Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      )
-                    ],
-                  ),
-                  subtitle: Text(
-                    "Order ID #204282",
-                    style: GoogleFonts.aBeeZee(color: Colors.black),
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(ProductDetails());
+                  },
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    leading: const CircleAvatar(backgroundImage:AssetImage('Assets/cake3.jpg') ,),
+                    tileColor: secondColor,
+                    title: Row(
+                      children: [
+                        Text(
+                          "Red Velvet Cake",
+                          style:normalstyling(15)
+                        ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                       const Text("₹1,200"),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              Get.to(ProductEdititng());
+                            },
+                            child: Icon(Icons.edit)),
+                        Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        )
+                      ],
+                    ),
+                    subtitle: Text(
+                      "Order ID #204282",
+                      style: normalstyling(15),
+                    ),
                   ),
                 ),
               ),

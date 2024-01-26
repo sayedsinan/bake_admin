@@ -1,91 +1,115 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
+import 'package:bake_n_cake_admin_side/screens/order_details.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+
 
 class AllTime extends StatelessWidget {
   const AllTime({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return ListView.builder(
       itemCount: 9,
       itemBuilder: (context, index) {
         return Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20,bottom: 30),
-              child: ListTile(
-                tileColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                leading: CircleAvatar(),
-                title: Row(
-                  children: [
-                    Text("Red Velvet Cake "),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text("Order ID #242")
-                  ],
-                ),
-                subtitle: Column(
-                  children: [
-                    Row(children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          height: 20,
-                          width: 40,
-                          child: Center(
-                              child: Text(
-                            "1.0 Kg",
-                            style: GoogleFonts.aBeeZee(color: Colors.black),
-                          )),
-                          color: Colors.grey,
-                        ),
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: ()=>Get.to(OrderDetails()),
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(6),
+                  tileColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  leading: const CircleAvatar(
+                    backgroundImage: AssetImage('Assets/cake1.jpg'),
+                  ),
+                  title: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Red Velvet Cake",
+                            style: heading(15),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(5),
+                                child: Container(
+                                  height: sizeof.size.height * 0.02,
+                                  width: sizeof.size.width * 0.14,
+                                  color: contaienerColor,
+                                  child: Center(child: Text("1.0 KG",style: normalstyling(15),)),
+                                ),
+                              ),
+                             const  SizedBox(width: 10,),
+                              Text("₹1200",style: heading(15),)
+                            ],
+                          ),
+              
+                         Row(
+                       
+                          children: [
+                            Padding(
+                              padding:  const EdgeInsets.only(right: 70),
+                              child: Text("Sinan",style: heading(15),),
+                            ),
+                          ],
+                        )
+                        ],
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 40,
                       ),
-                      Text(
-                        "₹ 1,200",
-                        style: GoogleFonts.aBeeZee(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      const Text("12/12/2024"),
-                      
-                    ]),
-                    // Text("Sinan",style: GoogleFonts.aBeeZee(color: Colors.black,fontWeight: FontWeight.bold),)
-                  const  SizedBox(
-                      height: 20,
-                    )
-                    ,Padding(
-                      padding: const EdgeInsets.only(bottom: 40,left: 70),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                            height: 20,
-                            width: 50,
-                            color: buttonColor,
-                            child: Center(
+                      Column(
+                        children: [
+                          Text(
+                            "Order ID #1231",
+                            style: heading(15),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            '12/03/2022',
+                            style: normalstyling(15),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              height: sizeof.size.height * 0.02,
+                              width: sizeof.size.width * 0.1,
+                              color: Colors.green,
                               child: Text(
-                                "Ready",
-                                style: GoogleFonts.aBeeZee(color: Colors.black),
+                                " Done",
+                                style: normalstyling(15),
                               ),
                             ),
-                          ),
-                      ),
-                    )
-                  ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            )
           ],
         );
       },

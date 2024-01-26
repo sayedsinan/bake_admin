@@ -1,24 +1,30 @@
+import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/messeage_list.dart';
+import 'package:bake_n_cake_admin_side/screens/product%20deails.dart';
 import 'package:bake_n_cake_admin_side/screens/products.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   var user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
-      backgroundColor: const Color(0xFFB5DBCE),
+      backgroundColor: maincolor,
       drawer: NavDrawer(),
       appBar: AppBar(
         leading: Builder(
           builder: (context) => // Ensure Scaffold is in context
               IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.menu,
                     color: Colors.black,
                   ),
@@ -34,16 +40,11 @@ class HomePage extends StatelessWidget {
         ],
         elevation: 0,
         backgroundColor: const Color(0xFFB5DBCE),
-        title: Text(
-          "         Bake'n Cake",
-          style: GoogleFonts.aBeeZee(
-            color: Colors.black,
-          ),
-        ),
+        title: Text("         Bake'n Cake", style: normalstyling(15)),
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Column(
@@ -56,26 +57,26 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(Products());
+                        Get.to(() => const Products());
                       },
                       child: Container(
-                        height: 150,
-                        width: 150,
-                        color: Colors.white,
+                        height: sizeof.size.height*0.18,
+                        width: sizeof.size.width*0.4,
+                        color: secondColor,
                         child: Column(
                           children: [
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Row(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 20,
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.shopping_cart,
                                   color: Colors.green,
                                 ),
-                                SizedBox(
-                                  width: 20,
+                                const SizedBox(
+                                  width: 10,
                                 ),
                                 Text(
                                   "Total sales",
@@ -85,10 +86,10 @@ class HomePage extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 40,
                             ),
-                            Text("₹31,00")
+                            const Text("₹31,00")
                           ],
                         ),
                       ),
@@ -100,34 +101,32 @@ class HomePage extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
-                      height: 150,
-                      width: 150,
+                      height: sizeof.size.height*0.18,
+                        width: sizeof.size.width*0.4,
                       color: Colors.white,
                       child: Column(
                         children: [
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Icon(
+                             const   Icon(
                                 Icons.qr_code_rounded,
                                 color: Colors.red,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text("Selled Product",
-                                  style: GoogleFonts.aBeeZee(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold))
+                                  style:heading(15))
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
-                          Text("2324")
+                          const Text("2324")
                         ],
                       ),
                     ),
@@ -143,36 +142,34 @@ class HomePage extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
-                      height: 150,
-                      width: 150,
-                      color: Colors.white,
+                     height: sizeof.size.height*0.18,
+                        width: sizeof.size.width*0.4,
+                      color: secondColor,
                       child: Column(
                         children: [
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.wallet,
                                 color: Colors.yellow,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 2,
                               ),
                               Text(
                                 "Customers Count",
-                                style: GoogleFonts.aBeeZee(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                style: heading(14)
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
-                          Text("2324")
+                          const Text("2324")
                         ],
                       ),
                     ),
@@ -192,10 +189,10 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'Top Selling Products',
-                          style: GoogleFonts.aBeeZee(color: Colors.black),
+                          style: normalstyling(15),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       )
                     ],
@@ -205,37 +202,40 @@ class HomePage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      leading: CircleAvatar(),
-                      title: Text("Red velvet Cake"),
-                      subtitle: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // SizedBox(height: 10,),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(
-                              height: 20,
-                              width: 50,
-                              color: Colors.grey.shade300,
-                              child: const Center(
-                                child: Text('1.0 kg'),
+                    child: GestureDetector(
+                      onTap: () => Get.to(() => const ProductDetails()),
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        leading: const CircleAvatar(backgroundImage: AssetImage('Assets/cake2.jpg'),),
+                        title: const Text("Red velvet Cake"),
+                        subtitle: Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // SizedBox(height: 10,),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: Container(
+                                height:sizeof.size.height*0.03,
+                                width: sizeof.size.width*0.1,
+                                color: Colors.grey.shade300,
+                                child: const Center(
+                                  child: Text('1.0 kg'),
+                                ),
                               ),
                             ),
-                          ),
-                          // SizedBox(width: 10,),
-                          Text(
-                            "₹ 1,200 ",
-                            style: GoogleFonts.aBeeZee(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              "₹ 1,200 ",
+                              style: heading(15),
+                            )
+                          ],
+                        ),
+                        focusColor: secondColor,
+                        tileColor: secondColor,
                       ),
-                      focusColor: Colors.white,
-                      tileColor: Colors.white,
                     ),
                   )
                 ],

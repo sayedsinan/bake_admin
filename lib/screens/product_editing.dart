@@ -1,4 +1,5 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,13 +10,14 @@ class ProductEdititng extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: maincolor,
       appBar: AppBar(
         backgroundColor: maincolor,
         elevation: 0,
         leading: GestureDetector(
-          onTap:(){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -25,7 +27,7 @@ class ProductEdititng extends StatelessWidget {
         ),
         title: Text(
           "                 Products",
-          style: GoogleFonts.aBeeZee(color: Colors.black),
+          style: heading(15),
         ),
       ),
       body: ListView(children: [
@@ -35,7 +37,6 @@ class ProductEdititng extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-          
             const SizedBox(
               height: 10,
             ),
@@ -45,8 +46,8 @@ class ProductEdititng extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Container(
                     color: Colors.white,
-                    height: 700,
-                    width: 400,
+                    height: sizeof.size.height*0.9,
+                    width: sizeof.size.width*0.9,
                     child: const AdddingSection()),
               ),
             ),
@@ -54,9 +55,9 @@ class ProductEdititng extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                   style: ButtonStyle(
+                    style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromARGB(0, 255, 255, 255)), // Set your desired color here
+                         buttonColor), // Set your desired color here
                     ),
                     onPressed: () {},
                     child: Row(
@@ -65,7 +66,7 @@ class ProductEdititng extends StatelessWidget {
                         const SizedBox(width: 20),
                         Text(
                           "Cancel",
-                          style: GoogleFonts.aBeeZee(color: Colors.black),
+                          style: normalstyling(15),
                         ),
                       ],
                     )),
@@ -74,20 +75,21 @@ class ProductEdititng extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        const  Color(0xFF26C1B5)), // Set your desired color here
+                          buttonColor), // Set your desired color here
                     ),
                     onPressed: () {},
-                    child:
-                        
-                        Row(
-                          children: [
-                            Icon(Icons.rotate_right_rounded,color: Colors.green,)
-,                            Text(
-                      "Save",
-                      style: GoogleFonts.aBeeZee(color: Colors.green),
-                    ),
-                          ],
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.rotate_right_rounded,
+                          color:buttonColor,
                         ),
+                        Text(
+                          "Save",
+                          style: normalstyling(15),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/payment_details.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class Payment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFFB5DBCE),
       drawer: NavDrawer(),
@@ -18,7 +20,6 @@ class Payment extends StatelessWidget {
             return IconButton(
               icon: const Icon(Icons.menu, color: Colors.black),
               onPressed: () {
-                // Open the drawer using the new context from Builder
                 Scaffold.of(context).openDrawer();
               },
             );
@@ -35,7 +36,7 @@ class Payment extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(50),
             child: TextField(
               decoration: InputDecoration(
@@ -50,41 +51,72 @@ class Payment extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15),
-            child: SizedBox(
-              height: 250,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(PaymentDetails());
-                  },
-                  child:  Card(
-                    shape: BeveledRectangleBorder(
-    borderRadius: BorderRadius.circular(20.0),
-  ),
-                    shadowColor: Colors.grey,
-                    color: Colors.white,
-                    elevation: 4, // Adjust the elevation as needed
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(() => const PaymentDetails());
+                },
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+
+                  shadowColor: Colors.grey,
+                  color: Colors.white,
+                  elevation: 4, // Adjust the elevation as needed
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
                         children: [
-                          Text("Customers name : ",
-                              style: TextStyle(fontSize: 16)),
-                          SizedBox(height: 8),
-                          Text("Order Item : ", style: TextStyle(fontSize: 16)),
-                          SizedBox(height: 8),
-                          Text("Order ID : ", style: TextStyle(fontSize: 16)),
-                          SizedBox(height: 8),
-                          Text("Amount : ", style: TextStyle(fontSize: 16)),
-                          SizedBox(height: 8),
-                          Text("Date : ", style: TextStyle(fontSize: 16)),
-                          SizedBox(height: 8),
-                          Text("Status : ", style: TextStyle(fontSize: 16)),
+                          SizedBox(
+                            height: sizeof.size.height * 0.3,
+                            width: sizeof.size.width * 1,
+                            child: Image.asset(
+                              'Assets/cake1.jpg',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                         ],
                       ),
-                    ),
+                      
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Customers name : ", style: normalstyling(15)),
+                      ),
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Order Item : ",
+                          style: normalstyling(15),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                     
+                     
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Amount : ",
+                          style: normalstyling(15),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Date : ",
+                          style: normalstyling(15),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
                   ),
                 ),
               ),

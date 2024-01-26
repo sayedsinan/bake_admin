@@ -1,4 +1,6 @@
+import 'package:bake_n_cake_admin_side/color/colors.dart';
 import 'package:bake_n_cake_admin_side/screens/customers_details.dart';
+import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,7 +53,7 @@ class Customers extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: GestureDetector(
               onTap: () {
-                Get.to(CustomersDetails());
+                Get.to(()=>const CustomersDetails());
               },
               child: ListTile(
                 shape: RoundedRectangleBorder(
@@ -61,25 +63,25 @@ class Customers extends StatelessWidget {
                   children: [
                     Text(
                       "Sinan",
-                      style: GoogleFonts.aBeeZee(color: Colors.black),
+                      style: normalstyling(15),
                     ),
-                    SizedBox(
+                  const   SizedBox(
                       width: 100,
                     ),
                     Text(
                       "Orders",
-                      style: GoogleFonts.aBeeZee(color: Colors.black),
+                      style: normalstyling(15),
                     )
                   ],
                 ),
                 subtitle: Row(
                   children: [
-                    Text("9023783412"),
-                    SizedBox(
+                  const   Text("9023783412",),
+                  const   SizedBox(
                       width: 90,
                     ),
-                    Text("2"),
-                    SizedBox(
+                 const    Text("2"),
+                  const   SizedBox(
                       width: 30,
                     ),
                     Expanded(
@@ -93,7 +95,7 @@ class Customers extends StatelessWidget {
                         onPressed: () {},
                         icon: Icon(
                           Icons.delete,
-                          color: Colors.red,
+                          color: delete
                         ),
                       ),
                     )

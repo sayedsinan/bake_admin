@@ -1,11 +1,11 @@
-import 'dart:ffi';
+
 
 import 'package:bake_n_cake_admin_side/color/colors.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class ProductsAdding extends StatelessWidget {
   const ProductsAdding({super.key});

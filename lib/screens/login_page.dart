@@ -51,25 +51,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final Password password = Get.put(Password());
 
-void showErrorDialog() {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Error'),
-        content: Text('Incorrect email or password. Please try again.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('OK'),
-          ),
-        ],
-      );
-    },
-  );
-}
+
 
   @override
   Widget build(BuildContext context) {

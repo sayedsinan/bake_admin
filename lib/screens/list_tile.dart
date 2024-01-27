@@ -91,12 +91,14 @@ class AllTime extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Container(
-                              height: sizeof.size.height * 0.02,
-                              width: sizeof.size.width * 0.1,
-                              color: Colors.green,
-                              child: Text(
-                                " Done",
-                                style: normalstyling(15),
+                              height: sizeof.size.height * 0.03,
+                              width: sizeof.size.width * 0.15,
+                              color: buttonColor,
+                              child: Center(
+                                child: Text(
+                                  " Done",
+                                  style: normalstyling(15),
+                                ),
                               ),
                             ),
                           )

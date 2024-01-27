@@ -1,6 +1,8 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/customers.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/messeage_list.dart';
+import 'package:bake_n_cake_admin_side/screens/order.dart';
 import 'package:bake_n_cake_admin_side/screens/product%20deails.dart';
 import 'package:bake_n_cake_admin_side/screens/products.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
@@ -57,11 +59,11 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => const Products());
+                        Get.to(() => const Orders());
                       },
                       child: Container(
-                        height: sizeof.size.height*0.18,
-                        width: sizeof.size.width*0.4,
+                        height: sizeof.size.height * 0.18,
+                        width: sizeof.size.width * 0.4,
                         color: secondColor,
                         child: Column(
                           children: [
@@ -101,8 +103,8 @@ class HomePage extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
-                      height: sizeof.size.height*0.18,
-                        width: sizeof.size.width*0.4,
+                      height: sizeof.size.height * 0.18,
+                      width: sizeof.size.width * 0.4,
                       color: Colors.white,
                       child: Column(
                         children: [
@@ -112,15 +114,14 @@ class HomePage extends StatelessWidget {
                               const SizedBox(
                                 width: 10,
                               ),
-                             const   Icon(
+                              const Icon(
                                 Icons.qr_code_rounded,
                                 color: Colors.red,
                               ),
                               const SizedBox(
                                 width: 5,
                               ),
-                              Text("Selled Product",
-                                  style:heading(15))
+                              Text("Selled Product", style: heading(15))
                             ],
                           ),
                           const SizedBox(
@@ -141,36 +142,38 @@ class HomePage extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                     height: sizeof.size.height*0.18,
-                        width: sizeof.size.width*0.4,
-                      color: secondColor,
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 20),
-                          Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Icon(
-                                Icons.wallet,
-                                color: Colors.yellow,
-                              ),
-                              const SizedBox(
-                                width: 2,
-                              ),
-                              Text(
-                                "Customers Count",
-                                style: heading(14)
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          const Text("2324")
-                        ],
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(()=>const Customers());
+                      },
+                      child: Container(
+                        height: sizeof.size.height * 0.18,
+                        width: sizeof.size.width * 0.4,
+                        color: secondColor,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(
+                                  Icons.wallet,
+                                  color: Colors.yellow,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Text("Customers Count", style: heading(14))
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            const Text("2324")
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -207,7 +210,9 @@ class HomePage extends StatelessWidget {
                       child: ListTile(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
-                        leading: const CircleAvatar(backgroundImage: AssetImage('Assets/cake2.jpg'),),
+                        leading: const CircleAvatar(
+                          backgroundImage: AssetImage('Assets/cake2.jpg'),
+                        ),
                         title: const Text("Red velvet Cake"),
                         subtitle: Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,8 +221,8 @@ class HomePage extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(5),
                               child: Container(
-                                height:sizeof.size.height*0.03,
-                                width: sizeof.size.width*0.1,
+                                height: sizeof.size.height * 0.03,
+                                width: sizeof.size.width * 0.1,
                                 color: Colors.grey.shade300,
                                 child: const Center(
                                   child: Text('1.0 kg'),

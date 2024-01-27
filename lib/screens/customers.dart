@@ -27,7 +27,7 @@ class Customers extends StatelessWidget {
         backgroundColor: const Color(0xFFB5DBCE),
         title: Text(
           "      Customers",
-          style: GoogleFonts.aBeeZee(color: Colors.black),
+          style: heading(20),
         ),
         elevation: 0,
       ),
@@ -58,7 +58,7 @@ class Customers extends StatelessWidget {
               child: ListTile(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                leading: const CircleAvatar(),
+                leading: const CircleAvatar(backgroundImage: AssetImage('Assets/person.jpg'),),
                 title: Row(
                   children: [
                     Text(

@@ -53,8 +53,8 @@ class AllTime extends StatelessWidget {
                                   child: Center(child: Text("1.0 KG",style: normalstyling(15),)),
                                 ),
                               ),
-                             const  SizedBox(width: 10,),
-                              Text("₹1200",style: heading(15),)
+                             const  SizedBox(width: 12,),
+                              Text("₹1,200",style: heading(15),)
                             ],
                           ),
               

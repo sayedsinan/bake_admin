@@ -54,12 +54,12 @@ class ProductsAdding extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Container(
-                    color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: SizedBox(
+                    // color: Colors.white,
                     height: sizeof.size.height*0.9,
                     width: sizeof.size.width*0.9,
                     child: const AdddingSection()),

@@ -1,4 +1,5 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/screens/adding_prodcuts.dart';
 import 'package:bake_n_cake_admin_side/screens/customers.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/messeage_list.dart';
@@ -10,7 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
+
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
         ],
         elevation: 0,
         backgroundColor: const Color(0xFFB5DBCE),
-        title: Text("         Bake'n Cake", style: normalstyling(15)),
+        title: Text("         Bake'n Cake", style: heading(20)),
       ),
       body: Column(
         children: [
@@ -102,33 +103,38 @@ class HomePage extends StatelessWidget {
                   ),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      height: sizeof.size.height * 0.18,
-                      width: sizeof.size.width * 0.4,
-                      color: Colors.white,
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 20),
-                          Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Icon(
-                                Icons.qr_code_rounded,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text("Selled Product", style: heading(15))
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          const Text("2324")
-                        ],
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(()=>const NewProduct());
+                      },
+                      child: Container(
+                        height: sizeof.size.height * 0.18,
+                        width: sizeof.size.width * 0.4,
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(
+                                  Icons.qr_code_rounded,
+                                  color: Colors.red,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text("Selled Product", style: heading(15))
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            const Text("2324")
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -144,7 +150,7 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       onTap: () {
-                        Get.to(()=>const Customers());
+                        Get.to(() => const Customers());
                       },
                       child: Container(
                         height: sizeof.size.height * 0.18,

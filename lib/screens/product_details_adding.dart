@@ -8,7 +8,7 @@ class AdddingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child:const Column(
           children: [
              Padding(

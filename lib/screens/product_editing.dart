@@ -1,4 +1,5 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/functions/image_function.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,7 @@ class ProductEdititng extends StatelessWidget {
                     color: Colors.white,
                     height: sizeof.size.height*0.9,
                     width: sizeof.size.width*0.9,
-                    child: const AdddingSection()),
+                    child:  AdddingSection()),
               ),
             ),
             Row(
@@ -77,7 +78,7 @@ class ProductEdititng extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all<Color>(
                           buttonColor), // Set your desired color here
                     ),
-                    onPressed: () {},
+                    onPressed: pickImage,
                     child: Row(
                       children: [
                         Icon(

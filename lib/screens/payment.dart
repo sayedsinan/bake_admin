@@ -74,9 +74,12 @@ class Payment extends StatelessWidget {
                           SizedBox(
                             height: sizeof.size.height * 0.3,
                             width: sizeof.size.width * 1,
-                            child: Image.asset(
-                              'Assets/cake1.jpg',
-                              fit: BoxFit.fill,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: Image.asset(
+                                'Assets/cake1.jpg',
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                         ],

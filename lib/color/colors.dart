@@ -9,4 +9,4 @@ Color iconColor = Colors.black;
 Color delete = Colors.red;
 Color secondColor = Colors.white;
 Color style = Colors.grey;
-Color contaienerColor = Color(0xFFD9D9D9);
+Color contaienerColor = const Color(0xFFD9D9D9);

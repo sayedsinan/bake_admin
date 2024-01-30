@@ -1,18 +1,20 @@
-
-
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
+import 'package:bake_n_cake_admin_side/firebase/product_services.dart';
+import 'package:bake_n_cake_admin_side/model/products.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class ProductsAdding extends StatelessWidget {
   const ProductsAdding({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var sizeof=MediaQuery.of(context);
+    final controller = Get.put(ProdcutController());
+    FireaBaseServices services = FireaBaseServices();
+    var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: maincolor,
       appBar: AppBar(
@@ -33,7 +35,7 @@ class ProductsAdding extends StatelessWidget {
         ),
       ),
       body: ListView(children: [
-      const   SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Column(
@@ -44,10 +46,7 @@ class ProductsAdding extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "General Information",
-                    style: heading(15)
-                  ),
+                  Text("General Information", style: heading(15)),
                 ],
               ),
             ),
@@ -59,10 +58,9 @@ class ProductsAdding extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: SizedBox(
-                    // color: Colors.white,
-                    height: sizeof.size.height*0.9,
-                    width: sizeof.size.width*0.9,
-                    child: const AdddingSection()),
+                    height: sizeof.size.height * 0.9,
+                    width: sizeof.size.width * 0.9,
+                    child: AdddingSection()),
               ),
             ),
             Row(
@@ -70,8 +68,8 @@ class ProductsAdding extends StatelessWidget {
               children: [
                 ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                         buttonColor), // Set your desired color here
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(buttonColor),
                     ),
                     onPressed: () {},
                     child: Row(
@@ -89,9 +87,22 @@ class ProductsAdding extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          buttonColor), // Set your desired color here
+                          buttonColor), 
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ProductModel newProduct = ProductModel(
+                        name: controller.productname.text,
+                        id: int.parse(controller.prodductid.text),
+                        price: double.parse(controller.productprice.text),
+                        description: controller.productdescription.text,
+                        image: controller.image.value,
+                      );
+                      services.addProduct(newProduct);
+                      controller.productname.clear();
+                      controller.prodductid.clear();
+                      controller.productprice.clear();
+                      controller.productdescription.clear();
+                    },
                     child: Text(
                       "Add Product",
                       style: normalstyling(15),

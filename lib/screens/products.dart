@@ -1,4 +1,5 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/firebase/product_services.dart';
 import 'package:bake_n_cake_admin_side/screens/adding_product.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product%20deails.dart';
@@ -6,20 +7,20 @@ import 'package:bake_n_cake_admin_side/screens/product_editing.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Products extends StatelessWidget {
   const Products({super.key});
 
   @override
   Widget build(BuildContext context) {
+    FireaBaseServices fireaBaseServices = FireaBaseServices();
     var sizeof = MediaQuery.of(context);
     return Scaffold(
       drawer: NavDrawer(),
       backgroundColor: maincolor,
       appBar: AppBar(
         leading: Builder(
-          builder: (context) => // Ensure Scaffold is in context
+          builder: (context) => 
               IconButton(
                   icon: Icon(
                     Icons.menu,
@@ -28,7 +29,7 @@ class Products extends StatelessWidget {
                   onPressed: () => Scaffold.of(context).openDrawer()),
         ),
         backgroundColor: maincolor,
-        title:  Text(
+        title: Text(
           "               Products",
           style: heading(20),
         ),
@@ -61,8 +62,8 @@ class Products extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
                       color: secondColor,
-                      height: sizeof.size.height*0.05,
-                      width: sizeof.size.width*0.4,
+                      height: sizeof.size.height * 0.05,
+                      width: sizeof.size.width * 0.4,
                       child: Row(
                         children: [
                           const SizedBox(
@@ -81,12 +82,12 @@ class Products extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(ProductsAdding());
+                        Get.to(const ProductsAdding());
                       },
                       child: Container(
                         color: secondColor,
-                      height: sizeof.size.height*0.05,
-                      width: sizeof.size.width*0.4,
+                        height: sizeof.size.height * 0.05,
+                        width: sizeof.size.width * 0.4,
                         child: Row(
                           children: [
                             const Icon(
@@ -95,10 +96,7 @@ class Products extends StatelessWidget {
                               weight: .100,
                             ),
                             const SizedBox(width: 10),
-                            Text(
-                              "Add products",
-                              style: heading(14)
-                            )
+                            Text("Add products", style: heading(14))
                           ],
                         ),
                       ),
@@ -118,18 +116,17 @@ class Products extends StatelessWidget {
                   child: ListTile(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    leading: const CircleAvatar(backgroundImage:AssetImage('Assets/cake3.jpg') ,),
+                    leading: const CircleAvatar(
+                      backgroundImage: AssetImage('Assets/cake3.jpg'),
+                    ),
                     tileColor: secondColor,
                     title: Row(
                       children: [
-                        Text(
-                          "Red Velvet Cake",
-                          style:normalstyling(15)
-                        ),
+                        Text("Red Velvet Cake", style: normalstyling(15)),
                         const SizedBox(
                           width: 30,
                         ),
-                       const Text("₹1,200"),
+                        const Text("₹1,200"),
                         const SizedBox(
                           width: 10,
                         ),

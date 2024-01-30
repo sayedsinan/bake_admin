@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       Get.offAll(() => HomePage());
     }
   } catch (e) {
-    // Display a popup with the error message
+   
     showDialog(
       context: context,
       builder: (context) {

@@ -1,11 +1,11 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 class ProductModel {
   final String name;
   final int id;
   final double price;
   final String description;
-   File? image;
+  String? image;
 
   ProductModel({
     required this.name,

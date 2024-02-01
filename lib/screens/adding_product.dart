@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bake_n_cake_admin_side/color/colors.dart';
 import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
 import 'package:bake_n_cake_admin_side/firebase/product_services.dart';
@@ -86,22 +88,32 @@ class ProductsAdding extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          buttonColor), 
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(buttonColor),
                     ),
-                    onPressed: () {
-                      ProductModel newProduct = ProductModel(
-                        name: controller.productname.text,
-                        id: int.parse(controller.prodductid.text),
-                        price: double.parse(controller.productprice.text),
-                        description: controller.productdescription.text,
-                        image: controller.image.value,
-                      );
-                      services.addProduct(newProduct);
-                      controller.productname.clear();
-                      controller.prodductid.clear();
-                      controller.productprice.clear();
-                      controller.productdescription.clear();
+                    onPressed: () async {
+                     
+                      Uint8List? imageData = controller.image;
+                      if (imageData != null) {
+                        String imageUrl = await controller.uploadToStorage(
+                            'ProducImage', imageData);
+                        ProductModel newProduct = ProductModel(
+                          name: controller.productname.text,
+                          id: int.parse(controller.prodductid.text),
+                          price: double.parse(controller.productprice.text),
+                          description: controller.productdescription.text,
+                          image: imageUrl,
+                        );
+
+                        // Add the new product to Firebase Firestore
+                        services.addProduct(newProduct);
+
+                        // Clear text fields after adding the product
+                        controller.productname.clear();
+                        controller.prodductid.clear();
+                        controller.productprice.clear();
+                        controller.productdescription.clear();
+                      }
                     },
                     child: Text(
                       "Add Product",

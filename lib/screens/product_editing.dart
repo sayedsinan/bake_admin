@@ -1,16 +1,17 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
-import 'package:bake_n_cake_admin_side/functions/image_function.dart';
+import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
+
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProductEdititng extends StatelessWidget {
   const ProductEdititng({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProdcutController>();
     var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: maincolor,
@@ -47,9 +48,9 @@ class ProductEdititng extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
                     color: Colors.white,
-                    height: sizeof.size.height*0.9,
-                    width: sizeof.size.width*0.9,
-                    child:  AdddingSection()),
+                    height: sizeof.size.height * 0.9,
+                    width: sizeof.size.width * 0.9,
+                    child: AdddingSection()),
               ),
             ),
             Row(
@@ -58,7 +59,7 @@ class ProductEdititng extends StatelessWidget {
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                         buttonColor), // Set your desired color here
+                          buttonColor), // Set your desired color here
                     ),
                     onPressed: () {},
                     child: Row(
@@ -78,12 +79,12 @@ class ProductEdititng extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all<Color>(
                           buttonColor), // Set your desired color here
                     ),
-                    onPressed: pickImage,
+                    onPressed: controller.selectImage,
                     child: Row(
                       children: [
                         Icon(
                           Icons.rotate_right_rounded,
-                          color:buttonColor,
+                          color: buttonColor,
                         ),
                         Text(
                           "Save",

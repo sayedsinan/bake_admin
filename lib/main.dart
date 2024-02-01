@@ -1,5 +1,6 @@
 
 import 'package:bake_n_cake_admin_side/firebase_options.dart';
+import 'package:bake_n_cake_admin_side/screens/adding_product.dart';
 import 'package:bake_n_cake_admin_side/screens/customers.dart';
 import 'package:bake_n_cake_admin_side/screens/login_page.dart';
 import 'package:bake_n_cake_admin_side/screens/order.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       },
 
       debugShowCheckedModeBanner: false,
-  //  home: Wrapper(),
+  //  home: ProductsAdding(),
     );
   }
 }

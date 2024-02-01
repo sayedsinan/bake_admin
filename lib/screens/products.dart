@@ -1,4 +1,5 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
 import 'package:bake_n_cake_admin_side/firebase/product_services.dart';
 import 'package:bake_n_cake_admin_side/screens/adding_product.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
@@ -13,20 +14,22 @@ class Products extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ProdcutController());
     FireaBaseServices fireaBaseServices = FireaBaseServices();
+    final controller = Get.find<ProdcutController>();
+
     var sizeof = MediaQuery.of(context);
     return Scaffold(
       drawer: NavDrawer(),
       backgroundColor: maincolor,
       appBar: AppBar(
         leading: Builder(
-          builder: (context) => 
-              IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.black,
-                  ),
-                  onPressed: () => Scaffold.of(context).openDrawer()),
+          builder: (context) => IconButton(
+              icon: Icon(
+                Icons.menu,
+                color: Colors.black,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer()),
         ),
         backgroundColor: maincolor,
         title: Text(

@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:bake_n_cake_admin_side/color/colors.dart';
-import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
-import 'package:bake_n_cake_admin_side/firebase/product_services.dart';
+import 'package:bake_n_cake_admin_side/firebase/product_controller.dart';
 import 'package:bake_n_cake_admin_side/model/products.dart';
+// import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,8 @@ class ProductsAdding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProdcutController());
-    FireaBaseServices services = FireaBaseServices();
+    final controller = Get.find<ProdcutController>();
+
     var sizeof = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: maincolor,
@@ -26,7 +26,7 @@ class ProductsAdding extends StatelessWidget {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
           ),
@@ -62,7 +62,7 @@ class ProductsAdding extends StatelessWidget {
                 child: SizedBox(
                     height: sizeof.size.height * 0.9,
                     width: sizeof.size.width * 0.9,
-                    child: AdddingSection()),
+                    child: const AdddingSection()),
               ),
             ),
             Row(
@@ -92,27 +92,24 @@ class ProductsAdding extends StatelessWidget {
                           MaterialStateProperty.all<Color>(buttonColor),
                     ),
                     onPressed: () async {
-                     
                       Uint8List? imageData = controller.image;
                       if (imageData != null) {
                         String imageUrl = await controller.uploadToStorage(
                             'ProducImage', imageData);
-                        ProductModel newProduct = ProductModel(
+                        ProductModel newProduct = ProductModel.create(
                           name: controller.productname.text,
                           id: int.parse(controller.prodductid.text),
                           price: double.parse(controller.productprice.text),
                           description: controller.productdescription.text,
                           image: imageUrl,
                         );
-
-                        // Add the new product to Firebase Firestore
-                        services.addProduct(newProduct);
-
-                        // Clear text fields after adding the product
+                        controller.services.addProduct(newProduct);
                         controller.productname.clear();
                         controller.prodductid.clear();
                         controller.productprice.clear();
                         controller.productdescription.clear();
+                        print("helleo");
+                        controller.getProducts();
                       }
                     },
                     child: Text(

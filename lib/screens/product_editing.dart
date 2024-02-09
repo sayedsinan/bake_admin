@@ -1,18 +1,23 @@
-import 'package:bake_n_cake_admin_side/color/colors.dart';
-import 'package:bake_n_cake_admin_side/controller/product_controller.dart';
+import 'dart:typed_data';
 
+import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/firebase/product_controller.dart';
+import 'package:bake_n_cake_admin_side/model/products.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
-import 'package:bake_n_cake_admin_side/screens/product_details_adding.dart';
+import 'package:bake_n_cake_admin_side/screens/product_details_editing.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductEdititng extends StatelessWidget {
-  const ProductEdititng({super.key});
+class ProductEditing extends StatelessWidget {
+  ProductEditing({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProdcutController>();
     var sizeof = MediaQuery.of(context);
+
     return Scaffold(
       backgroundColor: maincolor,
       appBar: AppBar(
@@ -22,46 +27,52 @@ class ProductEdititng extends StatelessWidget {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
           ),
         ),
         title: Text(
-          "                 Products",
+          "Products",
           style: heading(15),
         ),
       ),
-      body: ListView(children: [
-        SizedBox(
-          height: 30,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
+      body: ListView(
+        children: [
+          SizedBox(
+            height: 30,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
                     color: Colors.white,
                     height: sizeof.size.height * 0.9,
                     width: sizeof.size.width * 0.9,
-                    child: AdddingSection()),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          buttonColor), // Set your desired color here
+                    child: DetailEditing(
+                      product: controller.productslist[index],
                     ),
-                    onPressed: () {},
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(buttonColor),
+                    ),
+                    onPressed: () {
+                      Get.back();
+                    },
                     child: Row(
                       children: [
                         const Icon(Icons.cancel),
@@ -71,34 +82,76 @@ class ProductEdititng extends StatelessWidget {
                           style: normalstyling(15),
                         ),
                       ],
-                    )),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          buttonColor), // Set your desired color here
-                    ),
-                    onPressed: controller.selectImage,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.rotate_right_rounded,
-                          color: buttonColor,
-                        ),
-                        Text(
-                          "Save",
-                          style: normalstyling(15),
-                        ),
-                      ],
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
-        )
-      ]),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(buttonColor),
+                      ),
+                      onPressed: () async {
+                        ProductModel currentProduct =
+                            controller.productslist[index];
+
+                        ProductModel updatedProduct = ProductModel(
+                          documentID: currentProduct.documentID,
+                          name: controller.editingProductname.text,
+                          id: int.parse(controller.editingProdductid.text),
+                          price:
+                              double.parse(controller.editingProductprice.text),
+                          description:
+                              controller.editingProductdescription.text,
+                          image: currentProduct.image,
+                        );
+
+                        // Uncomment the following code once the documentID is available
+                        Uint8List? imageData = controller.image;
+                        if (imageData != null) {
+                          String imageUrl = await controller.uploadToStorage(
+                            'ProducImage',
+                            imageData,
+                          );
+                          updatedProduct.image = imageUrl;
+                        }
+
+                        await controller.updateData(
+                          productId:
+                              int.parse(controller.editingProdductid.text),
+                          name: controller.editingProductname.text,
+                          price:
+                              double.parse(controller.editingProductprice.text),
+                          description:
+                              controller.editingProductdescription.text,
+                          id: int.parse(controller.editingProdductid.text),
+                        );
+                        // controller.update();
+                        ();
+
+                        // Navigate back
+                        Get.back();
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.rotate_right_rounded,
+                            color: buttonColor,
+                          ),
+                          Text(
+                            "Save",
+                            style: normalstyling(15),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

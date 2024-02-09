@@ -207,7 +207,7 @@ class HomePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: GestureDetector(
-                      onTap: () => Get.to(() => const ProductDetails()),
+                      onTap: () => Get.to(() =>  ProductDetails(index: 1,)),
                       child: ListTile(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),

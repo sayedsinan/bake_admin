@@ -1,13 +1,17 @@
 import 'package:bake_n_cake_admin_side/firebase/product_controller.dart';
+import 'package:bake_n_cake_admin_side/model/products.dart';
 // import 'package:bake_n_cake_admin_side/functions/image_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdddingSection extends StatelessWidget {
-  const AdddingSection({super.key});
+class DetailEditing extends StatelessWidget {
+   final ProductModel product;
+  const  DetailEditing({super.key, required this.product});
+  
   @override
   Widget build(BuildContext context) {
-    final ProdcutController productcontroller = Get.put(ProdcutController());
+    final ProdcutController productcontroller = Get.find<ProdcutController>();
+ 
     return Scaffold(
       body: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -16,7 +20,7 @@ class AdddingSection extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(30),
               child: TextField(
-                controller: productcontroller.productname,
+                controller: productcontroller.editingProductname,
                 decoration: const InputDecoration(
                   labelText: 'Product name',
                   hintText: 'Product name',
@@ -29,7 +33,8 @@ class AdddingSection extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
               child: TextField(
-                controller: productcontroller.prodductid,
+                keyboardType: TextInputType.number,
+                controller: productcontroller.editingProdductid,
                 decoration: const InputDecoration(
                     labelText: 'Product ID',
                     hintText: 'Product ID',
@@ -43,7 +48,8 @@ class AdddingSection extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 30, right: 30, bottom: 20, top: 10),
               child: TextField(
-                controller: productcontroller.productprice,
+                keyboardType: TextInputType.number,
+                controller: productcontroller.editingProductprice,
                 decoration: const InputDecoration(
                   labelText: 'Price per kg',
                   hintText: 'Price per kg',
@@ -59,7 +65,7 @@ class AdddingSection extends StatelessWidget {
                 right: 30,
               ),
               child: TextField(
-                controller: productcontroller.productdescription,
+                controller: productcontroller.editingProductdescription,
                 decoration: const InputDecoration(
                     labelText: 'Description',
                     hintText: 'Description',

@@ -1,19 +1,22 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/controller/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MesseageIndex extends StatelessWidget {
-  const MesseageIndex({super.key});
+  const MesseageIndex({super.key, required this.index});
+final int index;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ChatController>();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
         backgroundColor: maincolor,
         title: Text(
-          "Sinan",
+         controller.userData[index].name,
           style: GoogleFonts.aBeeZee(color: Colors.black),
         ),
         leading: Column(
@@ -27,10 +30,12 @@ class MesseageIndex extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-          const  SizedBox(
+            const SizedBox(
               height: 10,
             ),
-           const  CircleAvatar(backgroundImage: AssetImage('Assets/person.jpg'),)
+             CircleAvatar(
+              backgroundImage: NetworkImage(controller.userData[index].image)
+            )
           ],
         ),
         actions: <Widget>[

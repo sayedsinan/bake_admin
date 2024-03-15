@@ -1,4 +1,6 @@
 import 'package:bake_n_cake_admin_side/color/colors.dart';
+import 'package:bake_n_cake_admin_side/controller/chat_controller.dart';
+import 'package:bake_n_cake_admin_side/firebase/product_controller.dart';
 import 'package:bake_n_cake_admin_side/screens/customers_details.dart';
 import 'package:bake_n_cake_admin_side/screens/font/styling.dart';
 import 'package:bake_n_cake_admin_side/screens/widgets/drawer.dart';
@@ -11,10 +13,12 @@ class Customers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProdcutController>();
     return Scaffold(
       drawer: NavDrawer(),
       backgroundColor: const Color(0xFFB5DBCE),
       appBar: AppBar(
+        centerTitle: true,
         leading: Builder(
           builder: (context) => // Ensure Scaffold is in context
               IconButton(
@@ -25,13 +29,14 @@ class Customers extends StatelessWidget {
                   onPressed: () => Scaffold.of(context).openDrawer()),
         ),
         backgroundColor: const Color(0xFFB5DBCE),
+        
         title: Text(
-          "      Customers",
+          " Customers",
           style: heading(20),
         ),
         elevation: 0,
       ),
-      body: ListView(
+      body: Column(
         children: [
           const SizedBox(
             height: 30,
@@ -53,19 +58,21 @@ class Customers extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: GestureDetector(
               onTap: () {
-                Get.to(()=>const CustomersDetails());
+                Get.to(() => const CustomersDetails());
               },
               child: ListTile(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
-                leading: const CircleAvatar(backgroundImage: AssetImage('Assets/person.jpg'),),
+                leading: const CircleAvatar(
+                  backgroundImage: AssetImage('Assets/person.jpg'),
+                ),
                 title: Row(
                   children: [
                     Text(
-                      "Sinan",
+                 "Customer",
                       style: normalstyling(15),
                     ),
-                  const   SizedBox(
+                    const SizedBox(
                       width: 100,
                     ),
                     Text(
@@ -76,12 +83,14 @@ class Customers extends StatelessWidget {
                 ),
                 subtitle: Row(
                   children: [
-                  const   Text("9023783412",),
-                  const   SizedBox(
+                    const Text(
+                      "9023783412",
+                    ),
+                    const SizedBox(
                       width: 90,
                     ),
-                 const    Text("2"),
-                  const   SizedBox(
+                    const Text("2"),
+                    const SizedBox(
                       width: 30,
                     ),
                     Expanded(
@@ -93,10 +102,7 @@ class Customers extends StatelessWidget {
                     Expanded(
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(
-                          Icons.delete,
-                          color: delete
-                        ),
+                        icon: Icon(Icons.delete, color: delete),
                       ),
                     )
                   ],

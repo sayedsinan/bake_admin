@@ -1,4 +1,5 @@
-
+import 'package:bake_n_cake_admin_side/controller/chat_controller.dart';
+import 'package:bake_n_cake_admin_side/firebase/product_controller.dart';
 import 'package:bake_n_cake_admin_side/firebase_options.dart';
 
 import 'package:bake_n_cake_admin_side/screens/customers.dart';
@@ -11,11 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 
- void main() async {
-WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Get.put(ChatController());
+  Get.put(ProdcutController());
   runApp(const MyApp());
 }
 
@@ -27,17 +30,17 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialRoute: '/1',
       routes: {
-        '/1':(context)=>const Wrapper(),
-        '/': (context) =>  LoginPage(),
+        '/1': (context) => const Wrapper(),
+        '/': (context) => LoginPage(),
         '/screen2': (context) => const Products(),
         '/customers': (context) => const Customers(),
         '/Orders': (context) => const Orders(),
         '/Payment': (context) => const Payment(),
-        '/logout': (context) =>  LoginPage(),
+        '/logout': (context) => LoginPage(),
       },
 
       debugShowCheckedModeBanner: false,
-  //  home: ProductsAdding(),
+      //  home: ProductsAdding(),
     );
   }
 }

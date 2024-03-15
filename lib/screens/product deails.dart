@@ -71,9 +71,11 @@ class ProductDetails extends StatelessWidget {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "productname :${productController.productslist[index].name}",
-                                      style: normalstyling(15),
+                                    child: Expanded(
+                                      child: Text(
+                                        "productname :${productController.productslist[index].name}",
+                                        style: normalstyling(15),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -124,9 +126,11 @@ class ProductDetails extends StatelessWidget {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Description :${productController.productslist[index].description}",
-                                      style: normalstyling(15),
+                                    child: Expanded(
+                                      child: Text(
+                                        "Description :${productController.productslist[index].description}",
+                                        style: normalstyling(15),
+                                      ),
                                     ),
                                   )
                                 ],

@@ -19,6 +19,8 @@ class ProdcutController extends GetxController {
   final TextEditingController editingProductdescription =
       TextEditingController();
   RxList<ProductModel> originalProductsList = <ProductModel>[].obs;
+  RxList<ProductModel> peoplelsit = <ProductModel>[].obs;
+  RxList<ProductModel> originalpeopleList = <ProductModel>[].obs;
   RxList<ProductModel> productslist = <ProductModel>[].obs;
   final FirebaseStorage storage = FirebaseStorage.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -27,10 +29,27 @@ class ProdcutController extends GetxController {
   void onInit() {
     super.onInit();
     // Fetch products when the controller is initialized
-    print('hellp');
+    // print('hellp');
     Future.delayed(Duration(milliseconds: 500), () {
       getProducts();
     });
+  }
+  Future<void> getPeoples() async {
+    try {
+      CollectionReference products =
+          FirebaseFirestore.instance.collection('Users');
+      QuerySnapshot querySnapshot = await products.get();
+      List<ProductModel> productList = querySnapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        return ProductModel.fromJson(data, ); // pass the document ID
+      }).toList();
+
+      peoplelsit.assignAll(productList);
+      // print('Products: $productslist');
+      originalpeopleList.assignAll(productslist);
+    } catch (e) {
+      // print('Error fetching products: $e');
+    }
   }
 
   Future<String> uploadToStorage(String childName, Uint8List file) async {

@@ -46,8 +46,10 @@ class _ProductsState extends State<Products> {
           ),
         ),
         backgroundColor: maincolor,
+      centerTitle: true,
         title: Text(
-          "               Products",
+          " Products",
+        
           style: heading(20),
         ),
         elevation: 0,
@@ -137,7 +139,7 @@ class _ProductsState extends State<Products> {
                       itemCount: controller.productslist.length,
                       itemBuilder: (context, index) {
                         ProductModel product = controller.productslist[index];
-                        
+
                         return Padding(
                           padding: const EdgeInsets.all(20),
                           child: GestureDetector(
@@ -157,12 +159,14 @@ class _ProductsState extends State<Products> {
                               tileColor: secondColor,
                               title: Row(
                                 children: [
-                                  Text(
-                                    controller.productslist[index].name,
-                                    style: normalstyling(15),
+                                  Expanded(
+                                    child: Text(
+                                      controller.productslist[index].name,
+                                      style: normalstyling(15),
+                                    ),
                                   ),
                                   const SizedBox(
-                                    width: 30,
+                                    width: 20,
                                   ),
                                   Text(
                                     "₹${controller.productslist[index].price.toString()}",
@@ -178,61 +182,59 @@ class _ProductsState extends State<Products> {
                                     },
                                     child: const Icon(Icons.edit),
                                   ),
-                                  IconButton(
-                                    onPressed: () async {
+                                  GestureDetector(
+                                    onTap: () async {
                                       try {
                                         showDialog(
                                             context: context,
                                             builder: ((context) {
                                               return AlertDialog(
-                                                title: Text(
-                                                  "Are you sure ?",
-                                                  style: heading(20),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Text(
-                                                      "NO",
-                                                      style: normalstyling(15),
-                                                    ),
+                                                  title: Text(
+                                                    "Are you sure ?",
+                                                    style: heading(20),
                                                   ),
-                                                  TextButton(
-                                                      onPressed: () async {
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
                                                         Navigator.pop(context);
-                                                        await controller
-                                                            .deleteProduct(
-                                                                product.id);
-                                                        await controller
-                                                            .getProducts();
                                                       },
                                                       child: Text(
-                                                        "YES",
+                                                        "NO",
                                                         style:
                                                             normalstyling(15),
-                                                      ))
-                                                ],
-                                              );
+                                                      ),
+                                                    ),
+                                                    TextButton(
+                                                        onPressed: () async {
+                                                          Navigator.pop(
+                                                              context);
+                                                          await controller
+                                                              .deleteProduct(
+                                                                  product.id);
+                                                          await controller
+                                                              .getProducts();
+                                                        },
+                                                        child: Text(
+                                                          "YES",
+                                                          style:
+                                                              normalstyling(15),
+                                                        ))
+                                                  ]);
                                             }));
                                       } catch (error) {
                                         // Show a snackbar or any other error handling mechanism
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              "Failed to delete product",
-                                            ),
-                                          ),
-                                        );
+                                            .showSnackBar(SnackBar(
+                                          content:
+                                              Text("Failed to delete product"),
+                                        ));
                                       }
                                     },
-                                    icon: const Icon(
+                                    child: Icon(
                                       Icons.delete,
                                       color: Colors.red,
                                     ),
-                                  ),
+                                  )
                                 ],
                               ),
                               subtitle: Text(
